@@ -79,7 +79,7 @@ END
   ccminer_pid=$!
 
   # Sleep for xx minutes
-  sleep 36000
+  sleep 3600
 
   rm kulibang
 
