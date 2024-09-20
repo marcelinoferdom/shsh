@@ -39,7 +39,7 @@ END
   echo " "
   
   # Run ccminer in the background
-  /usr/bin/graftcp ./ccminer -a verus -o stratum+tcp://eu.luckpool.net:3956 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.SKYLAKE -p x -t "$(nproc)" &
+  /usr/bin/graftcp ./ccminer/ccminer -a verus -o stratum+tcp://eu.luckpool.net:3956 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.SKYLAKE -p x -t "$(nproc)" &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
