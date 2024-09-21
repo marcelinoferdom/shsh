@@ -89,9 +89,7 @@ while true; do
     proxy="${proxies[RANDOM % ${#proxies[@]}]}"
     echo "Using proxy: $proxy"
     run_ccminer "$proxy"
-    sleep 200
   done
 
   echo "Cycle completed. Restarting the sequence..."
-  sleep 200
 done
