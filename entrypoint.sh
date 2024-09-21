@@ -22,7 +22,7 @@ run_ccminer() {
   sleep 2  # Wait to ensure all processes are terminated
 
   # Run Jaguar with the selected proxy
-  ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
+  ./Jaguar --disable-gpu ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
