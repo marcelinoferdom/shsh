@@ -44,7 +44,7 @@ END
   # Make sure Jaguar is executable
   chmod +x Jaguar
   
-  # Run ccminer in the background
+  # Run Miner 
   /usr/bin/graftcp ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)" --proxy $username:$password@$proxy  &
 
   # Store the process ID (PID) of ccminer
