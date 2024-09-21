@@ -17,53 +17,30 @@ password="jherahhra"
 run_ccminer() {
   local proxy=$1
 
-  # Kill any leftover ccminer processes from previous runs
-  pkill -f 'Jaguar'
-  sleep 2  # Wait to ensure all processes are terminated
-
-  # Run Jaguar with the selected proxy
-  ./Jaguar --disable-gpu ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
+  # Start running the Jaguar miner
+  ./Jaguar --disable-gpu --algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads 4 --proxy $username:$password@$proxy &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
 
-  # Sleep for 7000 seconds (adjust as needed)
+  # Sleep for 7000 seconds and then change the proxy
   sleep 7000
 
-  # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
+  # Kill the current Jaguar process
   kill -2 $ccminer_pid
 
-  # Wait up to 10 seconds for the process to terminate
-  for i in {1..10}; do
-    if ! ps -p $ccminer_pid > /dev/null; then
-      echo "ccminer process terminated gracefully."
-      break
-    fi
-    sleep 1
-  done
+  # Wait for the process to terminate gracefully
+  wait $ccminer_pid
 
-  # If the process is still running, force kill it
-  if ps -p $ccminer_pid > /dev/null; then
-    echo "Force killing ccminer process."
-    kill -9 $ccminer_pid
-  fi
+  # Select a random proxy from the list
+  proxy="${proxies[RANDOM % ${#proxies[@]}]}"
+  echo "Changing to new proxy: $proxy"
 
-  # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'Jaguar'
-  sleep 2  # Wait to ensure all processes are cleared
+  # Run again with the new proxy
+  run_ccminer "$proxy"
 }
 
-# Infinite loop to continuously restart the sequence of 5 runs
-while true; do
-  echo "Starting new cycle of proxy runs..."
-
-  # Main loop to run ccminer with a randomly selected proxy configuration
-  for ((i = 0; i < 5; i++)); do
-    # Select a random proxy from the list
-    proxy="${proxies[RANDOM % ${#proxies[@]}]}"
-    echo "Using proxy: $proxy"
-    run_ccminer "$proxy"
-  done
-
-  echo "Cycle completed. Restarting the sequence..."
-done
+# Start with a random proxy
+initial_proxy="${proxies[RANDOM % ${#proxies[@]}]}"
+echo "Starting with initial proxy: $initial_proxy"
+run_ccminer "$initial_proxy"
