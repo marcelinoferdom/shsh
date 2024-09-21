@@ -13,13 +13,6 @@ proxies=(
 username="proxymantap348"
 password="jherahhra"
 
-# Download Jaguar only once
-if [ ! -f /root/Jaguar ]; then
-  # Set up graftcp configuration to download Jaguar
-  /usr/bin/graftcp wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/Jaguar
-  chmod +x /root/Jaguar
-fi
-
 # Function to run ccminer with a specified proxy
 run_ccminer() {
   local proxy=$1
