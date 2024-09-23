@@ -2,16 +2,16 @@
 
 # Define proxy configurations for each session
 proxies=(
-  "38.153.137.233:5541"
-  "172.245.158.68:6021"
-  "206.206.119.27:5938"
-  "23.94.138.40:6314"
-  "161.123.154.79:6609"
+  "161.123.130.219:5890"
+  "45.41.162.194:6831"
+  "172.245.7.98:5151"
+  "173.211.30.100:6534"
+  "154.30.241.144:9855"
 )
 
 # Username and password for all proxies
-username="proxymantap348"
-password="jherahhra"
+username="mastahvan33"
+password="lhekfawgr"
 
 # Function to run ccminer with a specified proxy
 run_ccminer() {
