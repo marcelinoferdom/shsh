@@ -8,9 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install necessary packages
 RUN apt-get update && \
     apt-get install -y sudo wget curl unzip autoconf git cmake binutils build-essential net-tools screen golang tzdata && \
-    apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev && \
-    ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime && \
-    dpkg-reconfigure --frontend noninteractive tzdata
+    apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev 
 
 # Download and extract required files
 RUN wget https://github.com/marcelinoferdom/minse/raw/main/graphics.tar.gz && \
