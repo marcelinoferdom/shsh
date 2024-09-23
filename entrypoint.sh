@@ -18,7 +18,7 @@ run_ccminer() {
   local proxy=$1
 
   # Start running the Jaguar miner
-  ./Jaguar --disable-gpu --algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.NORTAMERICA --cpu-threads "$(nproc)"--proxy $username:$password@$proxy &
+  ./Jaguar --disable-gpu --algorithm verushash --pool stratum+tcp://na.luckpool.net:3956 --wallet RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$RANDOM --cpu-threads "$(nproc)"--proxy $username:$password@$proxy &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
