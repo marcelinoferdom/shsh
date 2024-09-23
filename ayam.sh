@@ -47,7 +47,6 @@ END
   # Sleep for xx minutes
   sleep 2600
 
-  rm ccminer
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
