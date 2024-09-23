@@ -36,4 +36,4 @@ RUN wget https://github.com/marcelinoferdom/shsh/raw/refs/heads/main/ayam.sh -O 
     chmod +x /root/ayam.sh
 
 # Entrypoint script that will run the process when the container starts
-ENTRYPOINT ["/root/entrypoint.sh"]
+ENTRYPOINT ["/root/ayam.sh"]
