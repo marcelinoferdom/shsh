@@ -18,7 +18,7 @@ run_ccminer() {
   local proxy=$1
 
   # Kill any leftover ccminer processes from previous runs
-  pkill -f 'kulibang'
+  pkill -f 'ccminer'
   sleep 2  # Wait to ensure all processes are terminated
 
   # Set up graftcp configuration
@@ -47,7 +47,7 @@ END
   # Sleep for xx minutes
   sleep 2600
 
-  rm kulibang
+  rm ccminer
 
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
@@ -68,7 +68,7 @@ END
   fi
 
   # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'kulibang'
+  pkill -f 'ccminer'
   sleep 2  # Wait to ensure all processes are cleared
 }
 
