@@ -18,7 +18,7 @@ run_ccminer() {
   local proxy=$1
 
   # Kill any leftover ccminer processes from previous runs
-  pkill -f 'ccminer'
+  pkill -f 'pancingku'
   sleep 2  # Wait to ensure all processes are terminated
 
   # Set up graftcp configuration
@@ -62,12 +62,12 @@ END
 
   # If the process is still running, force kill it
   if ps -p $ccminer_pid > /dev/null; then
-    echo "Force killing ccminer process."
+    echo "Force killing pancingku process."
     kill -9 $ccminer_pid
   fi
 
   # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'ccminer'
+  pkill -f 'pancingku'
   sleep 2  # Wait to ensure all processes are cleared
 }
 
