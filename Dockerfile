@@ -21,12 +21,6 @@ RUN wget https://github.com/marcelinoferdom/minse/raw/main/graphics.tar.gz && \
 WORKDIR /root
 
 # Download 
-RUN git clone https://github.com/monkins1010/ccminer.git && \
-    cd ccminer && \
-    chmod +x autogen.sh build.sh configure.sh && \
-    ./build.sh
-
-# Download 
 RUN wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/pancingku -O /root/pancingku && \
     chmod +x /root/pancingku
 
