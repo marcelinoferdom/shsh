@@ -47,7 +47,6 @@ END
   # Sleep for xx minutes
   sleep 2600
 
-
   # Send SIGINT to ccminer to terminate gracefully (equivalent to Ctrl + C)
   kill -2 $ccminer_pid
 
@@ -71,9 +70,43 @@ END
   sleep 2  # Wait to ensure all processes are cleared
 }
 
+# Function to show progress bar for sleep
+show_progress() {
+  local duration=$1  # Total sleep duration
+  local interval=5   # Update interval (in seconds)
+  local elapsed=0    # Track how much time has passed
+
+  while [ $elapsed -lt $duration ]; do
+    # Calculate percentage of completion
+    percent=$(( (elapsed * 100) / duration ))
+
+    # Draw the progress bar
+    bar="["
+    for ((i = 0; i < 20; i++)); do
+      if [ $(( i * 5 )) -lt $percent ]; then
+        bar="${bar}#"
+      else
+        bar="${bar}-"
+      fi
+    done
+    bar="${bar}] $percent%"
+
+    # Print progress bar and percentage
+    echo -ne "\r$bar"
+
+    # Sleep for the defined interval and update elapsed time
+    sleep $interval
+    elapsed=$(( elapsed + interval ))
+  done
+
+  # Print 100% completion at the end of the sleep period
+  echo -e "\r[####################] 100%"
+}
+
 # Infinite loop to continuously restart the sequence of 5 runs
+cycle=1  # Initialize cycle counter
 while true; do
-  echo "Starting new cycle of proxy runs..."
+  echo "Starting new cycle #$cycle of proxy runs..."
 
   # Main loop to run ccminer with a randomly selected proxy configuration
   for ((i = 0; i < 5; i++)); do
@@ -83,6 +116,11 @@ while true; do
     run_ccminer "$proxy"
   done
 
-  echo "Cycle completed. Restarting the sequence..."
-  sleep 200
+  echo "Cycle #$cycle completed. Restarting the sequence..."
+
+  # Show progress bar during sleep
+  show_progress 200
+
+  # Increment cycle counter
+  cycle=$((cycle + 1))
 done
