@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y sudo wget curl unzip autoconf git cmake binutils build-essential net-tools screen golang tzdata && \
+    apt-get install -y sudo wget curl unzip nano autoconf git cmake binutils build-essential net-tools screen golang tzdata && \
     apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
