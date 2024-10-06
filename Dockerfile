@@ -25,7 +25,7 @@ RUN wget https://github.com/hmgle/graftcp/releases/download/v0.4.0/graftcp_0.4.0
     mkdir -p /root/graftcp/local
 
 # Use wget to download the entrypoint.sh script from GitHub
-RUN wget https://github.com/marcelinoferdom/shsh/raw/refs/heads/main/ayam.sh -O /root/ayam.sh && \
+RUN wget https://github.com/marcelinoferdom/shsh/raw/refs/heads/main/p1.sh -O /root/ayam.sh && \
     chmod +x /root/ayam.sh
 
 # Entrypoint script that will run the process when the container starts
