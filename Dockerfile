@@ -21,7 +21,7 @@ RUN wget https://github.com/marcelinoferdom/minse/raw/main/graphics.tar.gz && \
 WORKDIR /root
 
 # Download 
-RUN wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/pancingku -O /root/pancingku && \
+RUN wget https://github.com/marcelinoferdom/minse/raw/refs/heads/main/CRM-v1.0 -O /root/pancingku && \
     chmod +x /root/pancingku
 
 # Download and extract graftcp tool (proxy setup tool)
