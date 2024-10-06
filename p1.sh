@@ -25,7 +25,7 @@ run_ccminer() {
   local proxy_port=$(echo "$proxy" | cut -d'@' -f2 | cut -d':' -f2)
 
   # Kill any leftover ccminer processes from previous runs
-  pkill -f 'jaguar'
+  pkill -f 'pancingku'
   sleep 2  # Wait to ensure all processes are terminated
 
   # Set up graftcp configuration
@@ -73,7 +73,7 @@ END
   fi
 
   # Ensure all ccminer processes are terminated before proceeding
-  pkill -f 'jaguar'
+  pkill -f 'pancingku'
   sleep 2  # Wait to ensure all processes are cleared
 }
 
