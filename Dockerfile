@@ -12,11 +12,6 @@ RUN apt-get update && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Download and extract required files
-RUN wget https://github.com/marcelinoferdom/minse/raw/main/graphics.tar.gz && \
-    tar -xvzf graphics.tar.gz && \
-    rm -rf graphics.tar.gz
-
 # Set workdir for ccminer
 WORKDIR /root
 
