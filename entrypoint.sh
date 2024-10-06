@@ -11,7 +11,7 @@ proxies=(
   "mastahvan33:lhekfawgr@161.123.130.219:5890"
   "mastahvan33:lhekfawgr@45.41.162.194:6831"
   "mastahvan33:lhekfawgr@172.245.7.98:5151"
-  "mastahvan33:lhekfawgr@154.30.241.144:9855
+  "mastahvan33:lhekfawgr@154.30.241.144:9855"
 )
 
 # Function to run ccminer with a specified proxy
